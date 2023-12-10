@@ -6,6 +6,7 @@ const {
 module.exports = withNativeFederation({
   name: 'mfe-app',
 
+  // Exposing only the routes instead of the whole application/AppComponent in order to use sub-routing
   exposes: {
     './mfe-app.routes': './projects/mfe-app/src/app/mfe-app.routes.ts',
   },

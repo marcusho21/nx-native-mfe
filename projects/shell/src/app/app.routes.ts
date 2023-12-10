@@ -15,7 +15,6 @@ export const appRoutes: Route[] = [
         (m) => m.mfeAppRoutes
       ),
   },
-
   {
     path: '**',
     redirectTo: '',

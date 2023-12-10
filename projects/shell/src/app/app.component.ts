@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+declare global {
+  // Have to use var for hoisting instead of const/let
+  // eslint-disable-next-line no-var
+  var ngZone: NgZone;
+}
 
 @Component({
   standalone: true,
@@ -9,5 +15,12 @@ import { RouterModule } from '@angular/router';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'shell';
+  // signal just because I can ;)
+  title = signal(
+    'A POC for Nx + Angular + Native Moderation + Micro Frontend + Web Components'
+  );
+
+  constructor() {
+    globalThis.ngZone = inject(NgZone);
+  }
 }

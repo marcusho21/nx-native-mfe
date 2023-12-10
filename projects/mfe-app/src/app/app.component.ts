@@ -5,11 +5,8 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   selector: 'nx-native-mfe-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {
-  title = 'nx-welcome';
-
-  constructor() {}
+  // Component used to bootstrap the application (local dev used only)
 }

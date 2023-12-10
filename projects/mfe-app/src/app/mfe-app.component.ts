@@ -6,19 +6,40 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, RouterOutlet],
   template: `
-    <h1>I'm a micro frontend</h1>
-    <h2>Type: Application</h2>
+    <div class="mfe-app-root">
+      <h1>I'm a micro frontend</h1>
+      <h2>Type: Application</h2>
 
-    <nav>
-      <a routerLink="/mfe-app/sub-route" routerLinkActive="active"
-        >Sub Route One</a
-      >
-      <a routerLink="/mfe-app/sub-route-two" routerLinkActive="active"
-        >Sub Route two</a
-      >
-    </nav>
+      <nav>
+        <a routerLink="/mfe-app/sub-route" routerLinkActive="active"
+          >Sub Route One</a
+        >
+        <a routerLink="/mfe-app/sub-route-two" routerLinkActive="active"
+          >Sub Route two</a
+        >
+      </nav>
 
-    <router-outlet></router-outlet>
+      <div class="sub-routes">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  `,
+  styles: `
+    .mfe-app-root {
+      border: 1px solid blue;
+      margin-block: 1rem;
+
+      .sub-routes {
+        border: 1px solid red;
+        margin: 1rem;
+
+        &:not(:has(*:not(router-outlet))) {
+          display: none;
+        }
+      }
+    }
   `,
 })
-export class MfeAppComponent {}
+export class MfeAppComponent {
+  // this is the root component for the application (exposed as root route of the micro frontend)
+}
