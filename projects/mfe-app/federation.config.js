@@ -7,7 +7,7 @@ module.exports = withNativeFederation({
   name: 'mfe-app',
 
   exposes: {
-    './Component': './projects/mfe-app/src/app/app.component.ts',
+    './mfe-app.routes': './projects/mfe-app/src/app/mfe-app.routes.ts',
   },
 
   shared: {

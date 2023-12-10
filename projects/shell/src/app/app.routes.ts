@@ -10,9 +10,12 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'mfe-app',
-    loadComponent: () =>
-      loadRemoteModule('mfe-app', './Component').then((m) => m.AppComponent),
+    loadChildren: () =>
+      loadRemoteModule('mfe-app', './mfe-app.routes').then(
+        (m) => m.mfeAppRoutes
+      ),
   },
+
   {
     path: '**',
     redirectTo: '',
