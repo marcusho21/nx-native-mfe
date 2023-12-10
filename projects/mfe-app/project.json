@@ -1,9 +1,9 @@
 {
-  "name": "shell",
+  "name": "mfe-app",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "",
-  "sourceRoot": "projects/shell/src",
+  "sourceRoot": "projects/mfe-app/src",
   "tags": [],
   "targets": {
     "build": {
@@ -11,16 +11,10 @@
       "options": {},
       "configurations": {
         "production": {
-          "target": "shell:esbuild:production",
-          "fileReplacements": [
-            {
-              "replace": "projects/shell/src/environments/environment.ts",
-              "with": "projects/shell/src/environments/environment.prod.ts"
-            }
-          ]
+          "target": "mfe-app:esbuild:production"
         },
         "development": {
-          "target": "shell:esbuild:development",
+          "target": "mfe-app:esbuild:development",
           "dev": true
         }
       },
@@ -29,16 +23,16 @@
     "serve": {
       "executor": "@angular-architects/native-federation:build",
       "options": {
-        "target": "shell:esbuild:development",
+        "target": "mfe-app:esbuild:development",
         "rebuildDelay": 0,
         "dev": true,
-        "port": 4200
+        "port": 4201
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "shell:build"
+        "buildTarget": "mfe-app:build"
       }
     },
     "lint": {
@@ -49,25 +43,25 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "projects/shell/jest.config.ts"
+        "jestConfig": "projects/mfe-app/jest.config.ts"
       }
     },
     "esbuild": {
       "executor": "@angular-devkit/build-angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/projects/shell",
-        "index": "projects/shell/src/index.html",
+        "outputPath": "dist/projects/mfe-app",
+        "index": "projects/mfe-app/src/index.html",
         "polyfills": ["zone.js", "es-module-shims"],
-        "tsConfig": "projects/shell/tsconfig.app.json",
+        "tsConfig": "projects/mfe-app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
-          "projects/shell/src/favicon.ico",
-          "projects/shell/src/assets"
+          "projects/mfe-app/src/favicon.ico",
+          "projects/mfe-app/src/assets"
         ],
-        "styles": ["projects/shell/src/styles.scss"],
+        "styles": ["projects/mfe-app/src/styles.scss"],
         "scripts": [],
-        "main": "projects/shell/src/main.ts"
+        "main": "projects/mfe-app/src/main.ts"
       },
       "configurations": {
         "production": {
@@ -95,15 +89,12 @@
     },
     "serve-original": {
       "executor": "@angular-devkit/build-angular:dev-server",
-      "options": {
-        "port": 4200
-      },
       "configurations": {
         "production": {
-          "buildTarget": "shell:build:production"
+          "buildTarget": "mfe-app:build:production"
         },
         "development": {
-          "buildTarget": "shell:build:development"
+          "buildTarget": "mfe-app:build:development"
         }
       },
       "defaultConfiguration": "development"

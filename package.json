@@ -2,12 +2,11 @@
   "name": "@nx-native-mfe/source",
   "version": "0.0.0",
   "scripts": {
-    "dev": "nx run shell:serve",
-    "start": "nx run shell:serve:production",
-    "build": "nx run shell:build:production",
-    "watch": "nx run shell:build:production --watch",
-    "test": "nx run shell:test",
-    "lint": "nx run shell:lint"
+    "start": "nx run shell:serve",
+    "start:mfe-app": "nx run mfe-app:serve",
+    "build": "nx run shell:build:production && nx run mfe-app:build:production",
+    "test": "nx run shell:test && nx run mfe-app:test",
+    "lint": "nx run shell:lint && nx run mfe-app:lint"
   },
   "private": true,
   "dependencies": {

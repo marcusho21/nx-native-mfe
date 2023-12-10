@@ -1,2 +1,11 @@
-<nx-native-mfe-nx-welcome></nx-native-mfe-nx-welcome>
+<nav>
+  <a
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >Home</a
+  >
+  <a routerLink="/mfe-app" routerLinkActive="active">MFE App</a>
+</nav>
+
 <router-outlet></router-outlet>
