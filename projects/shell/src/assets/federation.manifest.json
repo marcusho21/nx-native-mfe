@@ -1,3 +1,4 @@
 {
-  "mfe-app": "http://localhost:4201/remoteEntry.json"
+  "mfe-app": "http://localhost:4201/remoteEntry.json",
+  "vue-app": "http://localhost:8080/remoteEntry.json"
 }

@@ -1,12 +1,7 @@
-import './styles.scss';
+import { initFederation } from "@softarc/native-federation";
 
-import router from './router';
+(async () => {
+  await initFederation();
 
-import { createApp } from 'vue';
-import App from './app/App.vue';
-
-const app = createApp(App);
-
-app.use(router);
-
-app.mount('#root');
+  await import("./bootstrap");
+})();

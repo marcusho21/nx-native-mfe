@@ -13,7 +13,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/vue-app",
+        "outputPath": "projects/vue-app/dist",
         "skipTypeCheck": true
       },
       "configurations": {

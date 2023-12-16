@@ -1,49 +1,73 @@
 /// <reference types='vitest' />
-import { defineConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
-export default defineConfig({
-  root: __dirname,
-  cacheDir: '../node_modules/.vite/vue-app',
+import { federation } from '@module-federation/vite';
+import { createEsBuildAdapter } from '@softarc/native-federation-esbuild';
+import pluginVue from "esbuild-plugin-vue-next";
 
-  server: {
-    port: 4200,
-    host: 'localhost',
-  },
+export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
+  // const selfEnv = loadEnv(mode, process.cwd());
 
-  preview: {
-    port: 4300,
-    host: 'localhost',
-  },
+  return {
+    root: __dirname,
+    cacheDir: '../node_modules/.vite/vue-app',
 
-  plugins: [vue(), nxViteTsPaths()],
-
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
-
-  build: {
-    outDir: '../dist/vue-app',
-    reportCompressedSize: true,
-    commonjsOptions: {
-      transformMixedEsModules: true,
+    server: {
+      port: 5001,
+      host: 'localhost',
+      strictPort: true,
     },
-  },
 
-  test: {
-    globals: true,
-    cache: {
-      dir: '../node_modules/.vitest',
+    preview: {
+      port: 4300,
+      host: 'localhost',
     },
-    environment: 'jsdom',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
 
-    reporters: ['default'],
-    coverage: {
-      reportsDirectory: '../coverage/vue-app',
-      provider: 'v8',
+    plugins: [
+      federation({
+        options: {
+          workspaceRoot: __dirname,
+          outputPath: 'dist',
+          tsConfig: 'tsconfig.json',
+          federationConfig: 'module-federation/federation.config.cjs',
+          verbose: false,
+          dev: command === 'serve',
+        },
+        adapter: createEsBuildAdapter({ plugins: [pluginVue()] }),
+      }),
+      vue(),
+      nxViteTsPaths(),
+    ],
+
+    // Uncomment this if you are using workers.
+    // worker: {
+    //  plugins: [ nxViteTsPaths() ],
+    // },
+
+    build: {
+      target: 'esnext',
+      outDir: 'dist',
+      reportCompressedSize: true,
+      commonjsOptions: {
+        transformMixedEsModules: true,
+      },
     },
-  },
+
+    test: {
+      globals: true,
+      cache: {
+        dir: '../node_modules/.vitest',
+      },
+      environment: 'jsdom',
+      include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+
+      reporters: ['default'],
+      coverage: {
+        reportsDirectory: '../coverage/vue-app',
+        provider: 'v8',
+      },
+    },
+  }
 });

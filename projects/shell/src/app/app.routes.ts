@@ -16,6 +16,10 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'vue-app',
+    loadComponent: () => import('./mfe-helpers/components/vue-wrapper/vue-wrapper.component').then((m) => m.VueWrapperComponent),
+  },
+  {
     path: '**',
     redirectTo: '',
   },
