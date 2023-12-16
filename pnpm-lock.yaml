@@ -103,6 +103,9 @@ devDependencies:
   '@nx/workspace':
     specifier: 17.2.0
     version: 17.2.0(@swc-node/register@1.6.8)(@swc/core@1.3.100)
+  '@originjs/vite-plugin-federation':
+    specifier: ^1.3.3
+    version: 1.3.3
   '@schematics/angular':
     specifier: ~17.0.0
     version: 17.0.6
@@ -3953,14 +3956,6 @@ packages:
       - nx
     dev: true
 
-  /@nrwl/devkit@17.2.5(nx@17.2.5):
-    resolution: {integrity: sha512-rXZDkJMzbViCfxZ19ndLZX9MZhQ50qgQOR6kahYugTcJ6HRV1i/FsKRyKXk1JefMCo8qdw/F5aw9zl0WwOiPdA==}
-    dependencies:
-      '@nx/devkit': 17.2.5(nx@17.2.5)
-    transitivePeerDependencies:
-      - nx
-    dev: true
-
   /@nrwl/eslint-plugin-nx@17.2.0(@swc-node/register@1.6.8)(@swc/core@1.3.100)(@types/node@18.16.9)(@typescript-eslint/parser@6.13.2)(eslint-config-prettier@9.1.0)(eslint@8.48.0)(nx@17.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-knynf6aqFKIiQpy+/79IvBBOZDRLTjL7s1llD+k7PVrGJNdL62XVPzxu3tkUAkw7V8pbGBk+Leib1EwQc0VL8A==}
     dependencies:
@@ -4302,7 +4297,7 @@ packages:
     peerDependencies:
       nx: '>= 16 <= 18'
     dependencies:
-      '@nrwl/devkit': 17.2.5(nx@17.2.5)
+      '@nrwl/devkit': 17.2.5(nx@17.2.0)
       ejs: 3.1.9
       enquirer: 2.3.6
       ignore: 5.3.0
@@ -4955,6 +4950,14 @@ packages:
 
   /@one-ini/wasm@0.1.1:
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
+    dev: true
+
+  /@originjs/vite-plugin-federation@1.3.3:
+    resolution: {integrity: sha512-EJedGCEB1vZatougqF3A+DwbcNpaAfFjlLxp/BbxpwO36vQ/WMjvtlpfkiyeIolTbFgu85OcXAc98Q2CXtCfJQ==}
+    engines: {node: '>=14.0.0', pnpm: '>=7.0.1'}
+    dependencies:
+      estree-walker: 3.0.3
+      magic-string: 0.27.0
     dev: true
 
   /@phenomnomnominal/tsquery@5.0.1(typescript@5.2.2):
@@ -8804,6 +8807,12 @@ packages:
   /estree-walker@2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
+  /estree-walker@3.0.3:
+    resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
+    dependencies:
+      '@types/estree': 1.0.5
+    dev: true
+
   /esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
@@ -11200,6 +11209,13 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: true
+
+  /magic-string@0.27.0:
+    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
   /magic-string@0.30.5:
